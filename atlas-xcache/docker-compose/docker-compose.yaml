@@ -32,6 +32,8 @@ services:
       XC_WQ_BLOCKS_PER_LOOP: 10
       XC_WQ_THREADS: 2
       XC_MONITOR: &coll collector.atlas-ml.org:9000
+      GSTREAMADDR: ${GSTREAMADDR}
+      GSTREAMPORT: ${GSTREAMPORT}
     ports:
       - "${PORT}:${PORT}"
     healthcheck:
@@ -64,6 +66,8 @@ services:
       XC_INSTANCE: ${XC_INSTANCE}
       XC_REPORT_COLLECTOR: http://xcache.atlas-ml.org:80
       XC_MONITOR: *coll
+      GSTREAMADDR: ${GSTREAMADDR}
+      GSTREAMPORT: ${GSTREAMPORT}
     network_mode: host
     volumes:
       - *d1
