@@ -1,13 +1,13 @@
 FROM opensciencegrid/xcache:23-development
 
-LABEL maintainer OSG Software <help@opensciencegrid.org>
+LABEL maintainer="OSG Software <help@opensciencegrid.org>"
 
 # Specify the base Yum repository to get the necessary RPMs.
 ARG BASE_YUM_REPO=development
 ARG BASE_OSG_SERIES=23
 ARG BASE_OS=el9
 
-ENV XC_IMAGE_NAME atlas-xcache
+ENV XC_IMAGE_NAME=atlas-xcache
 
 RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" --enablerepo=osg-contrib && \
     yum install -y python3 python3-psutil python3-requests && \
