@@ -2,7 +2,7 @@ FROM opensciencegrid/xcache:23-development
 
 LABEL maintainer OSG Software <help@opensciencegrid.org>
 
-# Specify the base Yum repository to get the necessary RPMs
+# Specify the base Yum repository to get the necessary RPMs.
 ARG BASE_YUM_REPO=development
 ARG BASE_OSG_SERIES=23
 ARG BASE_OS=el9
