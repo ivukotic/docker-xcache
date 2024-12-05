@@ -36,4 +36,4 @@ jobs:
         context: atlas-xcache/.
         file: atlas-xcache/Dockerfile
         push: true
-        tags: hub.opensciencegrid.org/usatlas/atlas-xcache:testing
+        tags: hub.opensciencegrid.org/usatlas/atlas-xcache:testing_5.7.2

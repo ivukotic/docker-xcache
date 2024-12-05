@@ -16,7 +16,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v6.4
         with:
           image: ivukotic/atlas-xcache
-          tags: testing, ${{ github.sha }}
+          tags: testing_5.7.2, ${{ github.sha }}
           directory: "atlas-xcache"
           dockerfile: "atlas-xcache/Dockerfile"
           registry: docker.io
