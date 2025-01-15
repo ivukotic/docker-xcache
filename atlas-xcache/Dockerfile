@@ -9,8 +9,8 @@ ARG BASE_OS=el9
 
 ENV XC_IMAGE_NAME=atlas-xcache
 
-RUN yum install -y xrootd-client-libs xrdcl-http
-RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" --enablerepo=osg-contrib
+RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" --exclude=alja-\* --enablerepo=osg-contrib
+RUN yum install -y xrdcl-http
 
 RUN yum install -y python3 python3-psutil python3-requests && \
     yum clean all --enablerepo=* && rm -rf /var/cache/
