@@ -36,7 +36,7 @@ jobs:
 
       - name: Show XRDCP version
         run: |
-          docker run --rm ivukotic/atlas-xcache:testing xrdcp -version
+          docker run --rm ivukotic/atlas-xcache:testing_5.7.2 xrdcp -version
 
       - name: Show Rucio client version
         run: |
