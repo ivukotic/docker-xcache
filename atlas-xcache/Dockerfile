@@ -1,6 +1,6 @@
 FROM opensciencegrid/xcache:23-development
 
-LABEL maintainer="OSG Software <help@opensciencegrid.org>"
+LABEL maintainer="ivukotic@uchicago.edu"
 
 # Specify the base Yum repository to get the necessary RPMs.
 ARG BASE_YUM_REPO=development
