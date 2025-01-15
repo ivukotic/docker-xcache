@@ -1,19 +1,20 @@
-FROM opensciencegrid/xcache:23-development
+FROM opensciencegrid/xcache:23-testing
 
 LABEL maintainer="ivukotic@uchicago.edu"
 
 # Specify the base Yum repository to get the necessary RPMs.
-ARG BASE_YUM_REPO=development
+ARG BASE_YUM_REPO=testing
 ARG BASE_OSG_SERIES=23
 ARG BASE_OS=el9
 
 ENV XC_IMAGE_NAME=atlas-xcache
 
-RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" --enablerepo=osg-contrib && \
-    yum install -y python3 python3-psutil python3-requests && \
+RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" --enablerepo=osg-contrib
+RUN yum install -y xrdcl-http
+
+RUN yum install -y python3 python3-psutil python3-requests && \
     yum clean all --enablerepo=* && rm -rf /var/cache/
 
-RUN yum install -y xrdcl-http
 
 
 COPY gStream2tcp.py stats.py heartbeat.sh dark-data-cleaner.py /usr/local/sbin/
