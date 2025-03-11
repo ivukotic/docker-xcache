@@ -13,6 +13,7 @@ ENV X509_CERT_DIR=/etc/grid-security/certificates/
 # ENV RUCIO_AUTH_TYPE=x509_proxy
 # ENV RUCIO_ACCOUNT=xcache
 
-RUN useradd xrootd
+RUN groupadd -g 10940 xrootd && \
+    useradd -u 10940 -g 10940 xrootd
 
 CMD [ "/usr/local/sbin/run_heartbeats.sh" ]
