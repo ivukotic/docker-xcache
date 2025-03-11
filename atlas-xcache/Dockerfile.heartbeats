@@ -4,7 +4,7 @@ LABEL maintainer Ilija Vukotic <ivukotic@uchicago.edu>
 
 RUN yum install -y xrootd-client
 
-COPY run_heartbeats.sh /usr/local/sbin/
+COPY run_heartbeats.sh run_x509_updater.sh /usr/local/sbin/
 COPY heartbeat.py /usr/local/sbin/
 COPY rucio.cfg /opt/rucio/etc/
 
