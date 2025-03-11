@@ -43,3 +43,4 @@ RUN if [ $(stat -c "%U:%G" /xrd/var ) != "xrootd:xrootd" ]; then chown -R xrootd
 RUN if [ $(stat -c "%U:%G" /xrd ) != "xrootd:xrootd" ]; then chown -R xrootd:xrootd /xrd; fi
 
 CMD [ "/usr/local/sbin/runme.sh" ]
+
