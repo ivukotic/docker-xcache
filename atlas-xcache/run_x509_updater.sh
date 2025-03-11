@@ -55,7 +55,7 @@ while true; do
   echo 'updating proxy'
     
   while true; do 
-    voms-proxy-init -valid 96:0 -key $CERTPATH/userkey.pem -cert $CERTPATH/usercert.pem --voms=atlas
+    voms-proxy-init3 -valid 96:0 -key $CERTPATH/userkey.pem -cert $CERTPATH/usercert.pem --voms=atlas
     RESULT=$?
     if [ $RESULT -eq 0 ]; then
       echo "Proxy renewed."
