@@ -11,7 +11,7 @@ COPY rucio.cfg /opt/rucio/etc/
 ENV X509_USER_PROXY=/etc/proxy/x509up
 ENV X509_CERT_DIR=/etc/grid-security/certificates/
 # ENV RUCIO_AUTH_TYPE=x509_proxy
-# ENV RUCIO_ACCOUNT=xcache
+# ENV RUCIO_ACCOUNT=xcache 
 
 RUN groupadd -g 10940 xrootd && \
     useradd -u 10940 -g 10940 xrootd
