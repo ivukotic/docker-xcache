@@ -11,6 +11,8 @@ services:
 
   xcache:
     image: &bimage hub.opensciencegrid.org/usatlas/atlas-xcache:latest
+    depends_on:
+      - x509
     pull_policy: always
     network_mode: host
     volumes:
@@ -32,6 +34,8 @@ services:
       XC_WQ_BLOCKS_PER_LOOP: 10
       XC_WQ_THREADS: 2
       XC_MONITOR: &coll collector.atlas-ml.org:9000
+      GSTREAMADDR: ${GSTREAMADDR}
+      GSTREAMPORT: ${GSTREAMPORT}
     ports:
       - "${PORT}:${PORT}"
     healthcheck:
@@ -57,6 +61,8 @@ services:
 
   reporter:
     image: *bimage
+    depends_on:
+      - xcache
     pull_policy: always
     command: [ "/usr/local/sbin/run_cache_reporter.sh" ]
     environment:
@@ -64,6 +70,8 @@ services:
       XC_INSTANCE: ${XC_INSTANCE}
       XC_REPORT_COLLECTOR: http://xcache.atlas-ml.org:80
       XC_MONITOR: *coll
+      GSTREAMADDR: ${GSTREAMADDR}
+      GSTREAMPORT: ${GSTREAMPORT}
     network_mode: host
     volumes:
       - *d1
@@ -73,6 +81,8 @@ services:
 
   heartbeats:
     image: ivukotic/atlas-xcache-heartbeats:latest
+    depends_on:
+      - xcache
     pull_policy: always
     command: [ "/usr/local/sbin/run_heartbeats.sh" ]
     volumes:

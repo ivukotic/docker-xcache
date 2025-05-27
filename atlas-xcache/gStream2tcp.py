@@ -14,8 +14,11 @@ if not ('XC_MONITOR' in env):
     print('ERROR - needs environment variables XC_MONITOR')
     sys.exit(1)
 
-UDP_SRC_IP = "127.0.0.1"
-UDP_SRC_PORT = 9000
+# Default to listen on 127.0.0.1:9000
+# Can be overwritten with env params: GSTREAMADDR and GSTREAMPORT
+UDP_SRC_IP = env.get("GSTREAMADDR", "127.0.0.1")
+UDP_SRC_PORT = int(env.get("GSTREAMPORT", 9000))
+print(f'Listen for udp stream on {UDP_SRC_IP}:{UDP_SRC_PORT}')
 
 [TCP_DEST, TCP_DEST_PORT] = os.environ['XC_MONITOR'].split(':')
 TCP_DEST_PORT = int(TCP_DEST_PORT)
