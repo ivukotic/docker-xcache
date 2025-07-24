@@ -42,5 +42,7 @@ RUN mkdir -p /xrd/var/log /xrd/var/spool /xrd/var/run /tests
 RUN if [ $(stat -c "%U:%G" /xrd/var ) != "xrootd:xrootd" ]; then chown -R xrootd:xrootd /xrd/var; fi
 RUN if [ $(stat -c "%U:%G" /xrd ) != "xrootd:xrootd" ]; then chown -R xrootd:xrootd /xrd; fi
 
+HEALTHCHECK --interval=60s --timeout=1s --start-period=600s --retries=3  CMD bash -c "echo > /dev/tcp/localhost/1094" || exit 1
+
 CMD [ "/usr/local/sbin/runme.sh" ]
 
