@@ -18,7 +18,7 @@ RUN yum install -y python3 python3-psutil python3-requests && \
 
 
 COPY gStream2tcp.py stats.py heartbeat.sh dark-data-cleaner.py /usr/local/sbin/
-COPY runme.sh run_cache_reporter.sh run_x509_updater.sh /usr/local/sbin/
+COPY runme.sh runme_sv.sh run_cache_reporter.sh run_x509_updater.sh /usr/local/sbin/
 
 RUN rm /etc/xrootd/config.d/50-osg-monitoring.cfg /etc/xrootd/config.d/50-osg-http.cfg
 RUN rm /etc/xrootd/config.d/*
