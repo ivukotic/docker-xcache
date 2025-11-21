@@ -56,7 +56,7 @@ Download [template configuration file](https://raw.githubusercontent.com/ivukoti
 Edit every line (except maybe port number and memory) in .env file.
 For every disk you intend to use for xcache you should have one line in .env file that looks like this:
 
-```
+```txt
 DISK_N=/home/cloud-user/diskN
 ```
 
