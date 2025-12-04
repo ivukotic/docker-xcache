@@ -12,36 +12,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6.0.1
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3.11.1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.11.1
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v3.4.0
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        
-    - name: Log in to OSG Harbor
-      uses: docker/login-action@v3.4.0
-      with:
-        registry: hub.opensciencegrid.org
-        username: ${{ secrets.OSG_HARBOR_ROBOT_USER }}
-        password: ${{ secrets.OSG_HARBOR_ROBOT_PASSWORD }}
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3.6.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push server image
-      uses: docker/build-push-action@v6.18.0
-      with:
-        context: atlas-xcache/.
-        file: atlas-xcache/Dockerfile
-        push: true
-        tags: hub.opensciencegrid.org/usatlas/atlas-xcache:latest
+      - name: Log in to OSG Harbor
+        uses: docker/login-action@v3.6.0
+        with:
+          registry: hub.opensciencegrid.org
+          username: ${{ secrets.OSG_HARBOR_ROBOT_USER }}
+          password: ${{ secrets.OSG_HARBOR_ROBOT_PASSWORD }}
 
-    - name: Docker Build & Push HEARTBEATS image
-      uses: docker/build-push-action@v6.18.0
-      with:
-        context: atlas-xcache/.
-        file: atlas-xcache/Dockerfile.heartbeats
-        push: true
-        tags: hub.opensciencegrid.org/usatlas/atlas-xcache-heartbeats:latest
+      - name: Build and push server image
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: atlas-xcache/.
+          file: atlas-xcache/Dockerfile
+          push: true
+          tags: hub.opensciencegrid.org/usatlas/atlas-xcache:latest
+
+      - name: Docker Build & Push HEARTBEATS image
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: atlas-xcache/.
+          file: atlas-xcache/Dockerfile.heartbeats
+          push: true
+          tags: hub.opensciencegrid.org/usatlas/atlas-xcache-heartbeats:latest
