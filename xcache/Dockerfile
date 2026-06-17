@@ -7,6 +7,9 @@ LABEL maintainer OSG Software <help@opensciencegrid.org>
 ENV BASE_YUM_REPO osg-upcoming-development
 ARG DEBUG
 
+# Need to add new VOMS services for LHC experiments, Ops and DTeam available in OSG24
+ARG VO_CLIENT_RPM_URL=https://repo.osg-htc.org/osg/24-main/el9/release/x86_64/Packages/v/vo-client-142-2.osg24.el9.noarch.rpm
+
 # Default root dir
 ENV XC_ROOTDIR /xcache/namespace
 
@@ -39,6 +42,8 @@ RUN [[ -z "$DEBUG" ]] || \
 RUN yum install -y --enablerepo="$BASE_YUM_REPO" \
     xcache \
     gperftools-devel && \
+    yum install -y "${VO_CLIENT_RPM_URL}" && \
+    rpm -q vo-client && \
     yum clean all --enablerepo=* && rm -rf /var/cache/yum/
 
 ADD cron.d/* /etc/cron.d/
