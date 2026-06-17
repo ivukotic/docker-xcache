@@ -38,9 +38,9 @@ jobs:
           file: atlas-xcache/Dockerfile
           push: true
           tags: |
-            ivukotic/atlas-xcache:05.26
+            ivukotic/atlas-xcache:06.17
             ivukotic/atlas-xcache:${{ github.sha }}
-            hub.opensciencegrid.org/usatlas/atlas-xcache:05.26
+            hub.opensciencegrid.org/usatlas/atlas-xcache:06.17
 
       - name: Docker Build & Push HEARTBEATS image
         uses: docker/build-push-action@v7
@@ -49,14 +49,14 @@ jobs:
           file: atlas-xcache/Dockerfile.heartbeats
           push: true
           tags: |
-            ivukotic/atlas-xcache-heartbeats:05.26
+            ivukotic/atlas-xcache-heartbeats:06.17
             ivukotic/atlas-xcache-heartbeats:${{ github.sha }}
-            hub.opensciencegrid.org/usatlas/atlas-xcache-heartbeats:05.26
+            hub.opensciencegrid.org/usatlas/atlas-xcache-heartbeats:06.17
 
       - name: Show XRDCP version
         run: |
-          docker run --rm ivukotic/atlas-xcache:05.26 xrdcp -version
+          docker run --rm ivukotic/atlas-xcache:06.17 xrdcp -version
 
       - name: Show Rucio client version
         run: |
-          docker run --rm ivukotic/atlas-xcache-heartbeats:05.26 rucio --version
+          docker run --rm ivukotic/atlas-xcache-heartbeats:06.17 rucio --version
