@@ -7,10 +7,15 @@ ARG BASE_YUM_REPO=development
 ARG BASE_OSG_SERIES=23
 ARG BASE_OS=el9
 
+# Need to add new VOMS services for LHC experiments, Ops and DTeam available in OSG24
+ARG VO_CLIENT_RPM_URL=https://repo.osg-htc.org/osg/24-main/el9/release/x86_64/Packages/v/vo-client-142-2.osg24.el9.noarch.rpm
+
 ENV XC_IMAGE_NAME atlas-xcache
 
 RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" --enablerepo=osg-contrib && \
     yum install -y python3 python3-psutil python3-requests && \
+    yum install -y "${VO_CLIENT_RPM_URL}" && \
+    rpm -q vo-client && 
     yum clean all --enablerepo=* && rm -rf /var/cache/
 
 RUN yum install -y xrdcl-http
