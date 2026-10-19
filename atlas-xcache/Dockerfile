@@ -1,4 +1,4 @@
-FROM hub.opensciencegrid.org/osg-htc/xcache:24-testing-20261018-0750
+FROM hub.opensciencegrid.org/osg-htc/xcache:25-release-20261018-0750
 
 LABEL maintainer="ivukotic@uchicago.edu"
 
