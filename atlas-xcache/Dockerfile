@@ -1,4 +1,4 @@
-FROM hub.opensciencegrid.org/osg-htc/xcache:25-upcoming-20261018-0750
+FROM hub.opensciencegrid.org/osg-htc/xcache:25-testing-20261018-0750
 
 LABEL maintainer="ivukotic@uchicago.edu"
 
@@ -6,11 +6,16 @@ LABEL maintainer="ivukotic@uchicago.edu"
 ARG BASE_YUM_REPO=testing
 ARG BASE_OSG_SERIES=25
 ARG BASE_OS=el9
+# Upcoming repo to pull newer packages (e.g. xrootd 6.x) from; set to empty to disable.
+ARG UPCOMING_YUM_REPO=osg-upcoming-testing
 
 ENV XC_IMAGE_NAME=atlas-xcache
 
-RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" --exclude=alja-\* --enablerepo=osg-contrib
-RUN yum install -y xrdcl-http
+# Upgrade already-installed packages (xrootd, xcache, ...) to their upcoming versions.
+RUN if [ -n "$UPCOMING_YUM_REPO" ]; then yum update -y --enablerepo="$UPCOMING_YUM_REPO" --enablerepo="osg-$BASE_YUM_REPO"; fi
+
+RUN yum install -y atlas-xcache --enablerepo="osg-$BASE_YUM_REPO" ${UPCOMING_YUM_REPO:+--enablerepo="$UPCOMING_YUM_REPO"} --exclude=alja-\* --enablerepo=osg-contrib
+RUN yum install -y xrdcl-http ${UPCOMING_YUM_REPO:+--enablerepo="$UPCOMING_YUM_REPO"}
 
 RUN yum install -y python3 python3-psutil python3-requests && \
     yum clean all --enablerepo=* && rm -rf /var/cache/
