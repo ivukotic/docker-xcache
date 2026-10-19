@@ -1,9 +1,9 @@
-FROM hub.opensciencegrid.org/osg-htc/xcache:25-release-20261018-0750
+FROM hub.opensciencegrid.org/osg-htc/xcache:25-testing-20261018-0750
 
 LABEL maintainer="ivukotic@uchicago.edu"
 
 # Specify the base Yum repository to get the necessary RPMs.
-ARG BASE_YUM_REPO=release
+ARG BASE_YUM_REPO=testing
 ARG BASE_OSG_SERIES=25
 ARG BASE_OS=el9
 
