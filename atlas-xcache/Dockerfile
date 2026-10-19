@@ -5,7 +5,7 @@ LABEL maintainer="ivukotic@uchicago.edu"
 # Specify the base Yum repository to get the necessary RPMs.
 ARG BASE_YUM_REPO=release
 ARG BASE_OSG_SERIES=25
-ARG BASE_OS=el10
+ARG BASE_OS=el9
 
 ENV XC_IMAGE_NAME=atlas-xcache
 
