@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
@@ -38,9 +38,9 @@ jobs:
           file: atlas-xcache/Dockerfile
           push: true
           tags: |
-            ivukotic/atlas-xcache:06.17
+            ivukotic/atlas-xcache:2026.10.18
             ivukotic/atlas-xcache:${{ github.sha }}
-            hub.opensciencegrid.org/usatlas/atlas-xcache:06.17
+            hub.opensciencegrid.org/usatlas/atlas-xcache:2026.10.18
 
       - name: Docker Build & Push HEARTBEATS image
         uses: docker/build-push-action@v7
@@ -49,14 +49,14 @@ jobs:
           file: atlas-xcache/Dockerfile.heartbeats
           push: true
           tags: |
-            ivukotic/atlas-xcache-heartbeats:06.17
+            ivukotic/atlas-xcache-heartbeats:2026.10.18
             ivukotic/atlas-xcache-heartbeats:${{ github.sha }}
-            hub.opensciencegrid.org/usatlas/atlas-xcache-heartbeats:06.17
+            hub.opensciencegrid.org/usatlas/atlas-xcache-heartbeats:2026.10.18
 
       - name: Show XRDCP version
         run: |
-          docker run --rm ivukotic/atlas-xcache:06.17 xrdcp -version
+          docker run --rm ivukotic/atlas-xcache:2026.10.18 xrdcp -version
 
       - name: Show Rucio client version
         run: |
-          docker run --rm ivukotic/atlas-xcache-heartbeats:06.17 rucio --version
+          docker run --rm ivukotic/atlas-xcache-heartbeats:2026.10.18 rucio --version

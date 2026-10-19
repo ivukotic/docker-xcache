@@ -1,10 +1,10 @@
-FROM hub.opensciencegrid.org/osg-htc/xcache:24-testing
+FROM hub.opensciencegrid.org/osg-htc/xcache:24-testing-20261018-0750
 
 LABEL maintainer="ivukotic@uchicago.edu"
 
 # Specify the base Yum repository to get the necessary RPMs.
 ARG BASE_YUM_REPO=testing
-ARG BASE_OSG_SERIES=24
+ARG BASE_OSG_SERIES=25
 ARG BASE_OS=el9
 
 ENV XC_IMAGE_NAME=atlas-xcache
