@@ -4,15 +4,15 @@ ARG BASE_IMAGE=hub.opensciencegrid.org/osg-htc/xcache:25-testing-20261018-0750
 # requires xrootd < 6, so rebuild it from source against the xrootd 6 in the base image.
 FROM ${BASE_IMAGE} AS rucion2n-builder
 
-ARG RUCION2N_COMMIT=6002e6776dfee254a987f8183cabf279404e605b
+ARG RUCION2N_COMMIT=f35516271c5f7256714a36d760287a048b55a2e5
 ARG RUCION2N_VERSION=1.2
 
 RUN XRD_VR=$(rpm -q --qf '%{VERSION}-%{RELEASE}' xrootd-server) && \
-    yum install -y rpm-build gcc-c++ make libcurl-devel openssl-devel \
+    yum install -y rpm-build gcc-c++ make libcurl-devel openssl-devel libxml2-devel \
         xrootd-devel-$XRD_VR xrootd-server-devel-$XRD_VR xrootd-client-devel-$XRD_VR
 
 RUN mkdir -p /root/rpmbuild/SOURCES /root/rpmbuild/SPECS /tmp/src && cd /tmp/src && \
-    curl -fsSL https://github.com/wyang007/rucioN2N-for-Xcache/archive/$RUCION2N_COMMIT.tar.gz | tar xz && \
+    curl -fsSL https://github.com/xrootd/rucioN2N-for-Xcache/archive/$RUCION2N_COMMIT.tar.gz | tar xz && \
     mv rucioN2N-for-Xcache-$RUCION2N_COMMIT rucioN2N-for-Xcache-$RUCION2N_VERSION && \
     tar czf /root/rpmbuild/SOURCES/rucioN2N-for-Xcache-$RUCION2N_VERSION.tar.gz rucioN2N-for-Xcache-$RUCION2N_VERSION && \
     sed 's/^Release:.*/Release:   99.xrd6%{?dist}/' rucioN2N-for-Xcache-$RUCION2N_VERSION/rucioN2N-for-Xcache.spec \
